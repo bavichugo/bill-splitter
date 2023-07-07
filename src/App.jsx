@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <div className="mx-auto container">
+      <div className="mx-auto container flex justify-center">
         <Routes>
           <Route path="/" element={<LunchDinnerPage />} />
           <Route path="/contact" element={<ContactPage />} />

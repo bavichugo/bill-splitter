@@ -18,7 +18,7 @@ const NavBar = () => {
     <div className="flex justify-between items-center px-[20px] py-[12px]">
       <div className="flex items-center gap-2">
         <NavLink to="/">
-          <img className="max-h-12" src={logo} alt="Bill Splitting Logo" />
+          <img className="max-h-12 min-h-12" src={logo} alt="Bill Splitting Logo" />
         </NavLink>
         <NavLink
           to="/"

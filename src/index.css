@@ -6,6 +6,14 @@
   box-sizing: border-box;
 }
 
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 html, 
 body,
 #root,
@@ -16,7 +24,16 @@ body,
   height: 100%;
 }
 
-.App {
+/* html {
   background-image: linear-gradient(to bottom, #202738, #070816);
+} */
+
+body {
+  background-image: linear-gradient(to bottom, #202738, #070816); 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.App {
   color: white;
 }
