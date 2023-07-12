@@ -1,10 +1,10 @@
 export const isNumber = (str) => {
   return !isNaN(str);
-}
+};
 
 export const randomId = () => {
   return crypto.randomUUID();
-}
+};
 
 export const createItem = () => {
   return {
@@ -22,9 +22,9 @@ export const initialExpenseState = {
 };
 
 export const createRowItem = () => {
-  return {id: randomId(), name: "", price: ""};
-}
+  return { id: randomId(), name: "", price: "" };
+};
 
 export const formatCurrency = (num) => {
   return (Math.round(parseFloat(num) * 100) / 100).toFixed(2);
-}
+};
