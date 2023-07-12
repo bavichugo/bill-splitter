@@ -1,7 +1,8 @@
 import ExpenseItem from "./ExpenseItem";
 import BillTotalPrice from "./BillTotalPrice";
-import { createItem } from "../../util/utils";
+import { createItem, initialExpenseState } from "../../util/utils";
 import { randomId } from "../../util/utils";
+import { useEffect } from "react";
 
 const ExpenseMain = ({ setExpense, expense, setShowSummary }) => {
   const totalItems = expense?.items?.map((ele) => (
@@ -19,6 +20,19 @@ const ExpenseMain = ({ setExpense, expense, setShowSummary }) => {
       items: [...prevState.items, { ...createItem(), id: randomId() }],
     }));
   };
+
+  const onCalculateClickHanler = () => {
+    setShowSummary(true);
+    let expenseStorage = localStorage.getItem("expenses");
+    if (!expenseStorage) {
+      localStorage.setItem("expenses", JSON.stringify([expense]));
+      return;
+    }
+    localStorage.removeItem("expenses");
+    expenseStorage = JSON.parse(expenseStorage);
+    expenseStorage.push(expense);
+    localStorage.setItem("expenses", JSON.stringify(expenseStorage));
+  }
 
   return (
     <>
@@ -43,7 +57,7 @@ const ExpenseMain = ({ setExpense, expense, setShowSummary }) => {
       </button>
       <BillTotalPrice expense={expense} setExpense={setExpense} />
       <button
-        onClick={() => setShowSummary(true)}
+        onClick={onCalculateClickHanler}
         className="sm:max-w-[12rem] max-w-[10rem] w-full mx-auto bg-green-600 hover:bg-green-600/60 rounded-xl"
       >
         Calculate
