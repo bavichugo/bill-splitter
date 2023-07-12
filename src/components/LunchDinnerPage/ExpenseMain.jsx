@@ -1,10 +1,9 @@
 import ExpenseItem from "./ExpenseItem";
 import BillTotalPrice from "./BillTotalPrice";
-import { createItem, initialExpenseState } from "../../util/utils";
+import { createItem } from "../../util/utils";
 import { randomId } from "../../util/utils";
-import { useEffect } from "react";
 
-const ExpenseMain = ({ setExpense, expense, setShowSummary }) => {
+const ExpenseMain = ({ setExpense, expense, setShowSummary, setPreviousExpenses }) => {
   const totalItems = expense?.items?.map((ele) => (
     <ExpenseItem
       setExpense={setExpense}
@@ -26,11 +25,13 @@ const ExpenseMain = ({ setExpense, expense, setShowSummary }) => {
     let expenseStorage = localStorage.getItem("expenses");
     if (!expenseStorage) {
       localStorage.setItem("expenses", JSON.stringify([expense]));
+      setPreviousExpenses([expense]);
       return;
     }
     localStorage.removeItem("expenses");
     expenseStorage = JSON.parse(expenseStorage);
     expenseStorage.push(expense);
+    setPreviousExpenses(expenseStorage);
     localStorage.setItem("expenses", JSON.stringify(expenseStorage));
   }
 

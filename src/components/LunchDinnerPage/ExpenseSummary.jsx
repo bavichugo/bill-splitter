@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { formatCurrency } from "../../util/utils";
+import { initialExpenseState } from "../../util/utils";
 
-const ExpenseSummary = ({ expense }) => {
+const ExpenseSummary = ({ expense, setExpense, setShowSummary, setPreviousExpenses }) => {
   const { expenseName, items, totalWithTaxAndTip } = expense;
+
   const totalPriceOfItemsWithoutTaxAndTips = items.reduce((sum, item) => {
     const totalPrice = item.itemRows.reduce(
       (sum, item) => sum + parseFloat(item.price),
@@ -10,6 +12,7 @@ const ExpenseSummary = ({ expense }) => {
     );
     return sum + parseFloat(totalPrice);
   }, 0);
+
   const itemList = items.map((item) => (
     <Item
       {...item}
@@ -19,11 +22,17 @@ const ExpenseSummary = ({ expense }) => {
     />
   ));
 
+  const onNewExpenseClickHandler = () => {
+    setExpense(initialExpenseState);
+    setShowSummary(false);
+  };
+
   return (
     <>
       <span>{expenseName}</span>
       {itemList}
       <TotalPrice totalWithTaxAndTip={totalWithTaxAndTip} />
+      <button onClick={onNewExpenseClickHandler} className="sm:max-w-[12rem] max-w-[10rem] w-full mx-auto bg-green-600 hover:bg-green-600/60 rounded-xl">New expense</button>
     </>
   );
 };
@@ -42,7 +51,7 @@ const Item = ({
   // Calculates the price for each person based on the tax and tips given
   // The formula is:
   // The (total the person paid without taxes and tips) / (the total of everyone without taxes and tips) * the total of everyone plus taxes and tips
-  // This formula allows us to get the percentage of the bill a person is resposible for paying and multiplies that percentage against the final value 
+  // This formula allows us to get the percentage of the bill a person is resposible for paying and multiplies that percentage against the final value
   // which includes the total + tax + tips
   const priceForPersonWithTaxAndTips =
     (priceForPersonWithoutTaxAndTips / totalPriceOfItemsWithoutTaxAndTips) *
@@ -81,7 +90,9 @@ const ItemList = ({ itemRows }) => {
     >
       <div className={`flex ${!isHidden ? "pb-2" : "pb-2"}`}>
         <span>Items</span>
-        <span className="border border-green-300 w-fit rounded-full px-2 ml-2">{!isHidden ? "hide" : "show"}</span>
+        <span className="border border-green-300 w-fit rounded-full px-2 ml-2">
+          {!isHidden ? "hide" : "show"}
+        </span>
       </div>
       {!isHidden && <div className="flex flex-col gap-2">{menuItemList}</div>}
     </div>
