@@ -14,11 +14,13 @@ export const createItem = () => {
   };
 };
 
-export const initialExpenseState = {
-  id: randomId(),
-  expenseName: "",
-  items: [createItem(), createItem()],
-  totalWithTaxAndTip: "",
+export const initialExpenseState = () => {
+  return {
+    id: randomId(),
+    expenseName: "",
+    items: [createItem(), createItem()],
+    totalWithTaxAndTip: "",
+  };
 };
 
 export const createRowItem = () => {

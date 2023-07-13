@@ -7,7 +7,7 @@ const inputStyles =
   "max-w-xs w-full max-h-10 h-10 rounded-xl bg-transparent border border-gray-500 bg-gray-700 text-sm px-2 text-white";
 const inputStylesHover = "hover:border-white";
 
-const PreviousExpenses = ({ previousExpenses }) => {
+const PreviousExpenses = ({ setPreviousExpenses, previousExpenses }) => {
   const filterArr = (ele) => {
     return ele.expenseName.toLowerCase().includes(filter.toLowerCase());
   };
@@ -16,11 +16,13 @@ const PreviousExpenses = ({ previousExpenses }) => {
   const filteredExpenses = previousExpenses.filter(filterArr);
   const displayFiltered = filteredExpenses.length ? (
     filteredExpenses.map((expense) => (
-      <PreviousExpenseItem {...expense} key={expense.id} />
+      <PreviousExpenseItem {...expense} previousExpenses={previousExpenses} setPreviousExpenses={setPreviousExpenses} key={expense.id} />
     ))
   ) : (
     <span>⛔ No expense matches filter ⛔</span>
   );
+
+  if (!filteredExpenses.length) return null;
 
   return (
     <>
@@ -41,13 +43,24 @@ const PreviousExpenses = ({ previousExpenses }) => {
   );
 };
 
-const PreviousExpenseItem = ({ expenseName, totalWithTaxAndTip }) => {
+const PreviousExpenseItem = ({ id, expenseName, totalWithTaxAndTip, setPreviousExpenses, previousExpenses }) => {
+  const onDeleteHandler = () => {
+    debugger;
+    const filteredExpenses = previousExpenses.filter(expense => expense.id !== id);
+    localStorage.removeItem('expenses');
+    localStorage.setItem('expenses', JSON.stringify(filteredExpenses));
+    setPreviousExpenses(filteredExpenses);
+  }
+
   return (
     <div className="flex justify-between bg-[#283147] rounded-xl p-4">
       <span>{expenseName}</span>
-      <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
-        {`$ ${formatCurrency(totalWithTaxAndTip)}`}
-      </span>
+      <div className="flex gap-2">
+        <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
+          {`$ ${formatCurrency(totalWithTaxAndTip)}`}
+        </span>
+       <button onClick={onDeleteHandler} className="bg-red-600 hover:bg-red-800 px-3 rounded-xl">-</button>
+      </div>
     </div>
   );
 };

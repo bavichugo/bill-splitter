@@ -28,7 +28,7 @@ const ExpenseSummary = ({
   ));
 
   const onNewExpenseClickHandler = () => {
-    setExpense(initialExpenseState);
+    setExpense(initialExpenseState());
     setShowSummary(false);
   };
 

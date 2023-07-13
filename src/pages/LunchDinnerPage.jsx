@@ -6,7 +6,7 @@ import PreviousExpenses from "../components/LunchDinnerPage/PreviousExpenses";
 
 
 const LunchDinnerPage = () => {
-  const [expense, setExpense] = useState(initialExpenseState);
+  const [expense, setExpense] = useState(initialExpenseState());
   const [showSummary, setShowSummary] = useState(false);
   const [previousExpenses, setPreviousExpenses] = useState(null);
 
@@ -21,7 +21,7 @@ const LunchDinnerPage = () => {
       <div className="flex flex-col gap-4 border border-gray-500 p-4 rounded-xl">
         {!showSummary ? <ExpenseMain expense={expense} setExpense={setExpense} setShowSummary={setShowSummary} setPreviousExpenses={setPreviousExpenses} /> : <ExpenseSummary expense={expense} setExpense={setExpense} setPreviousExpenses={setPreviousExpenses} setShowSummary={setShowSummary} />}
       </div>
-      {previousExpenses && <PreviousExpenses previousExpenses={previousExpenses} />}
+      {previousExpenses && <PreviousExpenses setPreviousExpenses={setPreviousExpenses} previousExpenses={previousExpenses} />}
     </div>
   );
 };
