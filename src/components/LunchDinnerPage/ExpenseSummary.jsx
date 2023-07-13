@@ -2,12 +2,7 @@ import { useState } from "react";
 import { formatCurrency } from "../../util/utils";
 import { initialExpenseState } from "../../util/utils";
 
-const ExpenseSummary = ({
-  expense,
-  setExpense,
-  setShowSummary,
-  setPreviousExpenses,
-}) => {
+const ExpenseSummary = ({ expense, setExpense, setShowSummary }) => {
   const { expenseName, items, totalWithTaxAndTip } = expense;
 
   const totalPriceOfItemsWithoutTaxAndTips = items.reduce((sum, item) => {
@@ -37,12 +32,14 @@ const ExpenseSummary = ({
       <span>{expenseName}</span>
       {itemList}
       <TotalPrice totalWithTaxAndTip={totalWithTaxAndTip} />
-      <button
-        onClick={onNewExpenseClickHandler}
-        className="sm:max-w-[12rem] max-w-[10rem] w-full mx-auto bg-green-600 hover:bg-green-600/60 rounded-xl"
-      >
-        New expense
-      </button>
+      {setExpense && (
+        <button
+          onClick={onNewExpenseClickHandler}
+          className="sm:max-w-[12rem] max-w-[10rem] w-full mx-auto bg-green-600 hover:bg-green-600/60 rounded-xl"
+        >
+          New expense
+        </button>
+      )}
     </>
   );
 };
@@ -95,14 +92,13 @@ const ItemList = ({ itemRows }) => {
 
   return (
     <div
-      className="flex flex-col hover:cursor-pointer"
-      onClick={() => setIsHidden((s) => !s)}
+      className="flex flex-col"
     >
       <div className={`flex ${!isHidden ? "pb-2" : "pb-2"}`}>
         <span>Items</span>
-        <span className="border border-green-300 w-fit rounded-full px-2 ml-2">
+        <button onClick={() => setIsHidden((s) => !s)} className="border border-green-300 hover:bg-green-600/20 w-fit rounded-full px-2 ml-2">
           {!isHidden ? "hide" : "show"}
-        </span>
+        </button>
       </div>
       {!isHidden && <div className="flex flex-col gap-2">{menuItemList}</div>}
     </div>

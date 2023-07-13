@@ -2,6 +2,7 @@ import { formatCurrency } from "../../util/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import ExpenseSummary from "./ExpenseSummary";
 
 const inputStyles =
   "max-w-xs w-full max-h-10 h-10 rounded-xl bg-transparent border border-gray-500 bg-gray-700 text-sm px-2 text-white";
@@ -16,7 +17,12 @@ const PreviousExpenses = ({ setPreviousExpenses, previousExpenses }) => {
   const filteredExpenses = previousExpenses.filter(filterArr);
   const displayFiltered = filteredExpenses.length ? (
     filteredExpenses.map((expense) => (
-      <PreviousExpenseItem {...expense} previousExpenses={previousExpenses} setPreviousExpenses={setPreviousExpenses} key={expense.id} />
+      <PreviousExpenseItem
+        expense={expense}
+        previousExpenses={previousExpenses}
+        setPreviousExpenses={setPreviousExpenses}
+        key={expense.id}
+      />
     ))
   ) : (
     <span>⛔ No expense matches filter ⛔</span>
@@ -43,24 +49,50 @@ const PreviousExpenses = ({ setPreviousExpenses, previousExpenses }) => {
   );
 };
 
-const PreviousExpenseItem = ({ id, expenseName, totalWithTaxAndTip, setPreviousExpenses, previousExpenses }) => {
+const PreviousExpenseItem = ({ expense, previousExpenses, setPreviousExpenses }) => {
+  const [toggleDetails, setToggleDetails] = useState(true);
+  const {
+    id,
+    expenseName,
+    totalWithTaxAndTip,
+  } = expense;
+  
+
   const onDeleteHandler = () => {
-    debugger;
-    const filteredExpenses = previousExpenses.filter(expense => expense.id !== id);
-    localStorage.removeItem('expenses');
-    localStorage.setItem('expenses', JSON.stringify(filteredExpenses));
+    const filteredExpenses = previousExpenses.filter((item) => item.id !== id);
+    localStorage.removeItem("expenses");
+    localStorage.setItem("expenses", JSON.stringify(filteredExpenses));
     setPreviousExpenses(filteredExpenses);
-  }
+  };
 
   return (
-    <div className="flex justify-between bg-[#283147] rounded-xl p-4">
-      <span>{expenseName}</span>
-      <div className="flex gap-2">
-        <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
-          {`$ ${formatCurrency(totalWithTaxAndTip)}`}
-        </span>
-       <button onClick={onDeleteHandler} className="bg-red-600 hover:bg-red-800 px-3 rounded-xl">-</button>
+    <div className="flex flex-col">
+      <div
+        className="flex justify-between bg-[#283147] rounded-xl p-4"
+      >
+        <div>
+          <span>{expenseName}</span>
+          <button type="button" onClick={() => setToggleDetails((s) => !s)} className="border border-green-300 hover:bg-green-600/20 w-fit rounded-full px-2 ml-2">
+            {!toggleDetails ? "hide" : "show"}
+          </button>
+        </div>
+        <div className="flex gap-2">
+          <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
+            {`$ ${formatCurrency(totalWithTaxAndTip)}`}
+          </span>
+          <button
+            onClick={onDeleteHandler}
+            className="bg-red-600 hover:bg-red-800 px-3 rounded-xl"
+          >
+            -
+          </button>
+        </div>
       </div>
+      {!toggleDetails && (
+        <div className="flex flex-col gap-4 border border-gray-500 p-4 rounded-xl mt-4">
+          <ExpenseSummary expense={expense} />
+        </div>
+      )}
     </div>
   );
 };
