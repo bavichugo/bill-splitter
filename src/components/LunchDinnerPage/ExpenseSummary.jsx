@@ -2,7 +2,12 @@ import { useState } from "react";
 import { formatCurrency } from "../../util/utils";
 import { initialExpenseState } from "../../util/utils";
 
-const ExpenseSummary = ({ expense, setExpense, setShowSummary, setPreviousExpenses }) => {
+const ExpenseSummary = ({
+  expense,
+  setExpense,
+  setShowSummary,
+  setPreviousExpenses,
+}) => {
   const { expenseName, items, totalWithTaxAndTip } = expense;
 
   const totalPriceOfItemsWithoutTaxAndTips = items.reduce((sum, item) => {
@@ -32,7 +37,12 @@ const ExpenseSummary = ({ expense, setExpense, setShowSummary, setPreviousExpens
       <span>{expenseName}</span>
       {itemList}
       <TotalPrice totalWithTaxAndTip={totalWithTaxAndTip} />
-      <button onClick={onNewExpenseClickHandler} className="sm:max-w-[12rem] max-w-[10rem] w-full mx-auto bg-green-600 hover:bg-green-600/60 rounded-xl">New expense</button>
+      <button
+        onClick={onNewExpenseClickHandler}
+        className="sm:max-w-[12rem] max-w-[10rem] w-full mx-auto bg-green-600 hover:bg-green-600/60 rounded-xl"
+      >
+        New expense
+      </button>
     </>
   );
 };

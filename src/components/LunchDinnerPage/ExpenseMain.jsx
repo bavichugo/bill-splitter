@@ -3,7 +3,12 @@ import BillTotalPrice from "./BillTotalPrice";
 import { createItem } from "../../util/utils";
 import { randomId } from "../../util/utils";
 
-const ExpenseMain = ({ setExpense, expense, setShowSummary, setPreviousExpenses }) => {
+const ExpenseMain = ({
+  setExpense,
+  expense,
+  setShowSummary,
+  setPreviousExpenses,
+}) => {
   const totalItems = expense?.items?.map((ele) => (
     <ExpenseItem
       setExpense={setExpense}
@@ -33,7 +38,7 @@ const ExpenseMain = ({ setExpense, expense, setShowSummary, setPreviousExpenses 
     expenseStorage.push(expense);
     setPreviousExpenses(expenseStorage);
     localStorage.setItem("expenses", JSON.stringify(expenseStorage));
-  }
+  };
 
   return (
     <>

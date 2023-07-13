@@ -2,33 +2,32 @@ import { isNumber } from "../../util/utils";
 import { createRowItem } from "../../util/utils";
 
 const ExpenseItem = ({ id, personName, itemRows, expense, setExpense }) => {
-
   const addItemRowHandler = () => {
-    setExpense(prevState => {
-      const updatedItems = prevState.items.map(item => {
+    setExpense((prevState) => {
+      const updatedItems = prevState.items.map((item) => {
         if (item.id === id) {
-          return {...item, itemRows: [...item.itemRows, createRowItem()]}
+          return { ...item, itemRows: [...item.itemRows, createRowItem()] };
         }
         return item;
       });
-      return {...prevState, items: updatedItems};
-    })
+      return { ...prevState, items: updatedItems };
+    });
   };
 
   const deletePersonHandler = () => {
-    const filteredItems = expense.items.filter(item => item.id !== id);
-    setExpense(prevState => ({ ...prevState, items: filteredItems}));
+    const filteredItems = expense.items.filter((item) => item.id !== id);
+    setExpense((prevState) => ({ ...prevState, items: filteredItems }));
   };
 
   const onPersonNameChange = (e) => {
-    setExpense(prevState => {
-      const updatedItems = prevState.items.map(item => {
+    setExpense((prevState) => {
+      const updatedItems = prevState.items.map((item) => {
         if (item.id === id) {
-          return {...item, personName: e.target.value};
+          return { ...item, personName: e.target.value };
         }
         return item;
       });
-      return {...prevState, items: updatedItems};
+      return { ...prevState, items: updatedItems };
     });
   };
 
@@ -48,7 +47,14 @@ const ExpenseItem = ({ id, personName, itemRows, expense, setExpense }) => {
           Delete
         </button>
       </div>
-      {itemRows.map(item => <ExpenseItemRow {...item} setExpense={setExpense} parentId={id} key={item.id} />)}
+      {itemRows.map((item) => (
+        <ExpenseItemRow
+          {...item}
+          setExpense={setExpense}
+          parentId={id}
+          key={item.id}
+        />
+      ))}
       <button
         className="bg-green-600 hover:bg-green-800 max-w-[8rem] w-full mx-auto px-3 rounded-xl"
         onClick={addItemRowHandler}
@@ -60,36 +66,35 @@ const ExpenseItem = ({ id, personName, itemRows, expense, setExpense }) => {
 };
 
 const ExpenseItemRow = ({ setExpense, parentId, id, name, price }) => {
-
   const removeItemRowHandler = () => {
-    setExpense(prevState => {
-      const updatedItems = prevState.items.map(item => {
+    setExpense((prevState) => {
+      const updatedItems = prevState.items.map((item) => {
         if (item.id === parentId) {
-          const filteredItemsRow = item.itemRows.filter(ele => ele.id !== id);
-          return {...item, itemRows: filteredItemsRow}
+          const filteredItemsRow = item.itemRows.filter((ele) => ele.id !== id);
+          return { ...item, itemRows: filteredItemsRow };
         }
         return item;
       });
-      return {...prevState, items: updatedItems};
+      return { ...prevState, items: updatedItems };
     });
   };
 
   const onExpenseItemNameChangeHandler = (e) => {
-    setExpense(prevState => {
-      const updatedItems = prevState.items.map(item => {
+    setExpense((prevState) => {
+      const updatedItems = prevState.items.map((item) => {
         if (item.id === parentId) {
-          const updatedItemRows = item.itemRows.map(ele => {
+          const updatedItemRows = item.itemRows.map((ele) => {
             if (ele.id === id) {
-              return {...ele, name: e.target.value};
+              return { ...ele, name: e.target.value };
             }
             return ele;
           });
-          return {...item, itemRows: updatedItemRows}
+          return { ...item, itemRows: updatedItemRows };
         }
         return item;
-      })
-      return {...prevState, items: updatedItems}
-    })
+      });
+      return { ...prevState, items: updatedItems };
+    });
   };
 
   const onExpenseItemPriceChangeHandler = (e) => {
@@ -97,22 +102,22 @@ const ExpenseItemRow = ({ setExpense, parentId, id, name, price }) => {
       return;
     }
 
-    setExpense(prevState => {
-      const updatedItems = prevState.items.map(item => {
+    setExpense((prevState) => {
+      const updatedItems = prevState.items.map((item) => {
         if (item.id === parentId) {
-          const updatedItemRows = item.itemRows.map(ele => {
+          const updatedItemRows = item.itemRows.map((ele) => {
             if (ele.id === id) {
-              return {...ele, price: e.target.value};
+              return { ...ele, price: e.target.value };
             }
             return ele;
-          })
-          return {...item, itemRows: updatedItemRows}
+          });
+          return { ...item, itemRows: updatedItemRows };
         }
         return item;
-      })
-      return {...prevState, items: updatedItems};
-    })
-  }
+      });
+      return { ...prevState, items: updatedItems };
+    });
+  };
 
   return (
     <div className="flex gap-2 max-w-full">
