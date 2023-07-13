@@ -19,12 +19,12 @@ const NavBar = () => {
           Lunch/Dinner
         </NavLink>
         <NavLink
-          to="/contact"
+          to="/info"
           className={({ isActive }) =>
             `${linkStyles} ${isActive ? "text-white" : "text-gray-400"}`
           }
         >
-          Contact
+          Info
         </NavLink>
       </div>
     </div>
