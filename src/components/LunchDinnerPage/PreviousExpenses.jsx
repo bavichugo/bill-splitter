@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ExpenseSummary from "./ExpenseSummary";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../config/firebase";
 
 const inputStyles =
   "max-w-xs w-full max-h-10 h-10 rounded-xl bg-transparent border border-gray-500 bg-gray-700 text-sm px-2 text-white";
@@ -44,19 +46,18 @@ const PreviousExpenses = ({ setPreviousExpenses, previousExpenses }) => {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-3">{displayFiltered}</div>
+      <div className="flex flex-col gap-3 mb-10">{displayFiltered}</div>
     </>
   );
 };
 
-const PreviousExpenseItem = ({ expense, previousExpenses, setPreviousExpenses }) => {
+const PreviousExpenseItem = ({
+  expense,
+  previousExpenses,
+  setPreviousExpenses,
+}) => {
   const [toggleDetails, setToggleDetails] = useState(true);
-  const {
-    id,
-    expenseName,
-    totalWithTaxAndTip,
-  } = expense;
-  
+  const { id, expenseName, totalWithTaxAndTip } = expense;
 
   const onDeleteHandler = () => {
     const filteredExpenses = previousExpenses.filter((item) => item.id !== id);
@@ -67,12 +68,17 @@ const PreviousExpenseItem = ({ expense, previousExpenses, setPreviousExpenses })
 
   return (
     <div className="flex flex-col">
-      <div
-        className="flex justify-between bg-[#283147] rounded-xl p-4"
-      >
+      <div className="flex justify-between bg-[#283147] rounded-xl p-4">
         <div>
           <span>{expenseName}</span>
-          <button type="button" onClick={() => setToggleDetails((s) => !s)} className="border border-green-300 hover:bg-green-600/20 w-fit rounded-full px-2 ml-2">
+          <button
+            type="button"
+            onClick={() => {
+              logEvent(analytics, "toggle_previous_expense");
+              setToggleDetails((s) => !s);
+            }}
+            className="border border-green-300 hover:bg-green-600/20 w-fit rounded-full px-2 ml-2"
+          >
             {!toggleDetails ? "hide" : "show"}
           </button>
         </div>

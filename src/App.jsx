@@ -5,8 +5,6 @@ import InfoPage from "./pages/InfoPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 // TODO: 
-// Fix all console errors
-// Fix frontend styling issues (buttons width not matching, etc)
 // Add google ads
 // Add analytics
 

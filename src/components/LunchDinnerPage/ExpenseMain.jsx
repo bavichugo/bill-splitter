@@ -2,6 +2,8 @@ import ExpenseItem from "./ExpenseItem";
 import BillTotalPrice from "./BillTotalPrice";
 import { createItem, validateExpense } from "../../util/utils";
 import { randomId } from "../../util/utils";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../config/firebase";
 
 const ExpenseMain = ({
   setExpense,
@@ -26,11 +28,13 @@ const ExpenseMain = ({
   };
 
   const onCalculateClickHanler = () => {
+    logEvent(analytics, "calculate_meal_button_clicked");
     const { isValid, message } = validateExpense(expense);
     if (!isValid) {
       alert(message);
       return;
     }
+    logEvent(analytics, "calculate_meal_button_clicked_worked");
     setShowSummary(true);
     let expenseStorage = localStorage.getItem("expenses");
     if (!expenseStorage) {
@@ -57,7 +61,7 @@ const ExpenseMain = ({
             expenseName: e.target.value,
           }))
         }
-        placeholder="Expense name..."
+        placeholder="Expense name... (Pizza place!)"
       />
       {totalItems}
       <button
