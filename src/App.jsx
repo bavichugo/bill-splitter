@@ -6,6 +6,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 // TODO: 
 // Fix all console errors
+// Fix frontend styling issues (buttons width not matching, etc)
 // Add google ads
 // Add analytics
 // Add user input validation to components to validate that they input correct info and that nothing is missing 

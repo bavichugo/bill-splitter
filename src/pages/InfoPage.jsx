@@ -5,7 +5,7 @@ const InfoPage = () => {
         <span className="underline underline-offset-4 mb-2">How to use</span>
         <span>
           - On the main box, add the expense name, your friends name and their
-          items,and the total + tax + tips. Than, press calculate and the total
+          items, and the total + tax + tips. Than, press calculate and the total
           each person should pay will be calculated.
         </span>
         <br />

@@ -1,6 +1,6 @@
 import ExpenseItem from "./ExpenseItem";
 import BillTotalPrice from "./BillTotalPrice";
-import { createItem } from "../../util/utils";
+import { createItem, validateExpense } from "../../util/utils";
 import { randomId } from "../../util/utils";
 
 const ExpenseMain = ({
@@ -26,6 +26,11 @@ const ExpenseMain = ({
   };
 
   const onCalculateClickHanler = () => {
+    const { isValid, message } = validateExpense(expense);
+    if (!isValid) {
+      alert(message);
+      return;
+    }
     setShowSummary(true);
     let expenseStorage = localStorage.getItem("expenses");
     if (!expenseStorage) {
