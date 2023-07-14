@@ -28,7 +28,7 @@ export const createRowItem = () => {
 };
 
 export const formatCurrency = (num) => {
-  return parseFloat((Math.round(parseFloat(num) * 100) / 100).toFixed(2));
+  return parseFloat((Math.round(parseFloat(num) * 100) / 100)).toFixed(2);
 };
 
 /**

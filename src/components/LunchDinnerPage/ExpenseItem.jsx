@@ -56,7 +56,7 @@ const ExpenseItem = ({ id, personName, itemRows, expense, setExpense }) => {
         />
       ))}
       <button
-        className="bg-green-600 hover:bg-green-800 max-w-[8rem] w-full mx-auto px-3 rounded-xl"
+        className="bg-green-600 hover:bg-green-800 max-w-[6rem] w-full mx-auto px-3 rounded-xl"
         onClick={addItemRowHandler}
       >
         +
@@ -124,7 +124,7 @@ const ExpenseItemRow = ({ setExpense, parentId, id, name, price }) => {
       <input
         value={name}
         type="text"
-        className="bg-[#2F3C5E] w-full py-2 px-2 rounded-md focus:outline-none"
+        className="bg-[#2F3C5E] w-full px-2 rounded-md focus:outline-none"
         onChange={onExpenseItemNameChangeHandler}
         placeholder="Item name..."
       />

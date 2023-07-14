@@ -68,15 +68,15 @@ const Item = ({
     <div className="flex flex-col gap-2 bg-[#283147] rounded-xl p-4">
       {personName}
       <ItemList itemRows={itemRows} />
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <span>Total</span>
-        <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
+        <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md py-1 px-1">
           {`$ ${formatCurrency(priceForPersonWithoutTaxAndTips)}`}
         </span>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <span>Total + Tax + Tips</span>
-        <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
+        <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md py-1 px-1">
           {`$ ${formatCurrency(priceForPersonWithTaxAndTips)}`}
         </span>
       </div>
@@ -94,7 +94,7 @@ const ItemList = ({ itemRows }) => {
     <div
       className="flex flex-col"
     >
-      <div className={`flex ${!isHidden ? "pb-2" : "pb-2"}`}>
+      <div className={`flex ${!isHidden && "pb-2"}`}>
         <span>Items</span>
         <button onClick={() => setIsHidden((s) => !s)} className="border border-green-300 hover:bg-green-600/20 w-fit rounded-full px-2 ml-2">
           {!isHidden ? "hide" : "show"}
@@ -116,9 +116,9 @@ const MenuItem = ({ name, price, index }) => {
 
 const TotalPrice = ({ totalWithTaxAndTip }) => {
   return (
-    <div className="flex justify-between bg-[#283147] rounded-xl p-4 text-sm sm:text-lg">
+    <div className="flex justify-between items-center bg-[#283147] rounded-xl p-4 text-sm sm:text-lg">
       <span>Total + Taxes + Tips</span>
-      <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
+      <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md py-1 px-1">
         {`$ ${formatCurrency(totalWithTaxAndTip)}`}
       </span>
     </div>

@@ -62,7 +62,7 @@ const ExpenseMain = ({
       {totalItems}
       <button
         onClick={addPersonHandler}
-        className="max-w-[15rem] w-full mx-auto bg-transparent hover:bg-green-600/20 rounded-xl border border-green-600"
+        className="sm:max-w-[12rem] max-w-[10rem] w-full mx-auto bg-transparent hover:bg-green-600/20 rounded-xl border border-green-600"
       >
         Add Person
       </button>

@@ -28,7 +28,7 @@ const PreviousExpenses = ({ setPreviousExpenses, previousExpenses }) => {
     <span>⛔ No expense matches filter ⛔</span>
   );
 
-  if (!filteredExpenses.length) return null;
+  if (!previousExpenses.length) return null;
 
   return (
     <>
@@ -76,7 +76,7 @@ const PreviousExpenseItem = ({ expense, previousExpenses, setPreviousExpenses })
             {!toggleDetails ? "hide" : "show"}
           </button>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 justify-end max-w-[12rem] w-full">
           <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
             {`$ ${formatCurrency(totalWithTaxAndTip)}`}
           </span>
