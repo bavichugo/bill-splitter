@@ -6,7 +6,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 // TODO: 
 // Add google ads
-// Add analytics
+// Improve SEO
 
 function App() {
   return (
