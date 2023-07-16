@@ -74,8 +74,8 @@ const Item = ({
           {`$ ${formatCurrency(priceForPersonWithoutTaxAndTips)}`}
         </span>
       </div>
-      <div className="flex justify-between items-center">
-        <span>Total + Tax + Tips</span>
+      <div className="flex justify-between items-center text-center">
+        <span className="max-w-[50%]">Total + Tax + Tips</span>
         <span className="bg-[#2F3C5E] rounded-md py-1 px-1">
           {`$ ${formatCurrency(priceForPersonWithTaxAndTips)}`}
         </span>
@@ -116,8 +116,8 @@ const MenuItem = ({ name, price, index }) => {
 
 const TotalPrice = ({ totalWithTaxAndTip }) => {
   return (
-    <div className="flex justify-between items-center bg-[#283147] rounded-xl p-4 text-sm sm:text-lg">
-      <span>Total + Taxes + Tips</span>
+    <div className="flex justify-between items-center bg-[#283147] rounded-xl p-4 text-sm sm:text-lg text-center">
+      <span className="max-w-[50%]">Total + Taxes + Tips</span>
       <span className="bg-[#2F3C5E] rounded-md py-1 px-1">
         {`$ ${formatCurrency(totalWithTaxAndTip)}`}
       </span>
