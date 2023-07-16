@@ -86,7 +86,7 @@ const Item = ({
 };
 
 const ItemList = ({ itemRows }) => {
-  const [isHidden, setIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
   const menuItemList = itemRows.map((item, index) => (
     <MenuItem {...item} index={index} key={item.id} />
   ));
