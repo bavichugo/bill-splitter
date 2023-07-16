@@ -70,7 +70,7 @@ const Item = ({
       <ItemList priceForPersonWithoutTaxAndTips={priceForPersonWithoutTaxAndTips} itemRows={itemRows} />
       <hr className="border-gray-500" />
       <div className="flex justify-between items-center text-center">
-        <span className="max-w-[50%]">{personName} Total + TP</span>
+        <span className="max-w-[50%]">{personName} <br className="sm:hidden"/> Total + TP</span>
         <span className="bg-[#2F3C5E] rounded-md py-1 px-1">
           {`$ ${formatCurrency(priceForPersonWithTaxAndTips)}`}
         </span>
