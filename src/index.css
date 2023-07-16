@@ -29,6 +29,7 @@ body,
 } */
 
 body {
+  background-color: #070816;
   background-image: linear-gradient(to bottom, #202738, #070816); 
   background-repeat: no-repeat;
   background-attachment: fixed;
