@@ -13,7 +13,7 @@ const BillTotalPrice = ({ expense, setExpense }) => {
 
   return (
     <div className="flex justify-between items-center bg-[#283147] rounded-xl p-4 text-sm sm:text-lg text-center">
-      <span>Total + Taxes + Tips</span>
+      <span className="max-w-[50%]">Total + Taxes + Tips</span>
       <div className="flex items-center h-full">
         <input
           value={expense.totalWithTaxAndTip}

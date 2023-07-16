@@ -84,11 +84,8 @@ const PreviousExpenseItem = ({
         </div>
         <div className="flex gap-2 justify-end">
           <div className="flex items-center h-full">
-            <span className="flex items-center bg-[#2F3C5E] max-w-[6rem] w-full h-full rounded-l-md px-1">
-              {`${formatCurrency(totalWithTaxAndTip)}`}
-            </span>
-            <span className="flex items-center bg-[#2F3C5E] h-full rounded-r-md pr-2">
-              $
+            <span className="bg-[#2F3C5E] rounded-md py-1 px-1">
+              {`$ ${formatCurrency(totalWithTaxAndTip)}`}
             </span>
           </div>
           <button
