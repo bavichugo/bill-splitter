@@ -74,6 +74,7 @@ const Item = ({
           {`$ ${formatCurrency(priceForPersonWithoutTaxAndTips)}`}
         </span>
       </div>
+      <hr className="border-gray-500" />
       <div className="flex justify-between items-center text-center">
         <span className="max-w-[50%]">Total + Tax + Tips</span>
         <span className="bg-[#2F3C5E] rounded-md py-1 px-1">
