@@ -123,7 +123,7 @@ const MenuItem = ({ name, price, index }) => {
 const TotalPrice = ({ totalWithTaxAndTip }) => {
   return (
     <div className="flex justify-between items-center bg-[#283147] rounded-xl p-4 text-sm sm:text-lg text-center">
-      <span className="max-w-[50%]">Expense Total + TP</span>
+      <span className="max-w-[50%]">Expense<br className="sm:hidden"/> Total + TP</span>
       <span className="bg-[#2F3C5E] rounded-md py-1 px-1">
         {`$ ${formatCurrency(totalWithTaxAndTip)}`}
       </span>
