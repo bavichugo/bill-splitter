@@ -67,16 +67,10 @@ const Item = ({
   return (
     <div className="flex flex-col gap-2 bg-[#283147] rounded-xl p-4">
       {personName}
-      <ItemList itemRows={itemRows} />
-      <div className="flex justify-between items-center">
-        <span>Total</span>
-        <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md py-1 px-1">
-          {`$ ${formatCurrency(priceForPersonWithoutTaxAndTips)}`}
-        </span>
-      </div>
+      <ItemList priceForPersonWithoutTaxAndTips={priceForPersonWithoutTaxAndTips} itemRows={itemRows} />
       <hr className="border-gray-500" />
       <div className="flex justify-between items-center text-center">
-        <span className="max-w-[50%]">Total + Tax + Tips</span>
+        <span className="max-w-[50%]">{personName} Total + TP</span>
         <span className="bg-[#2F3C5E] rounded-md py-1 px-1">
           {`$ ${formatCurrency(priceForPersonWithTaxAndTips)}`}
         </span>
@@ -85,23 +79,34 @@ const Item = ({
   );
 };
 
-const ItemList = ({ itemRows }) => {
+const ItemList = ({ itemRows, priceForPersonWithoutTaxAndTips }) => {
   const [isHidden, setIsHidden] = useState(true);
   const menuItemList = itemRows.map((item, index) => (
     <MenuItem {...item} index={index} key={item.id} />
   ));
 
   return (
-    <div
-      className="flex flex-col"
-    >
+    <div className="flex flex-col">
       <div className={`flex ${!isHidden && "pb-2"}`}>
         <span>Items</span>
-        <button onClick={() => setIsHidden((s) => !s)} className="border border-green-300 hover:bg-green-600/20 w-fit rounded-full px-2 ml-2">
+        <button
+          onClick={() => setIsHidden((s) => !s)}
+          className="border border-green-300 hover:bg-green-600/20 w-fit rounded-full px-2 ml-2"
+        >
           {!isHidden ? "hide" : "show"}
         </button>
       </div>
-      {!isHidden && <div className="flex flex-col gap-2">{menuItemList}</div>}
+      {!isHidden && (
+        <>
+          <div className="flex flex-col gap-2 mb-2">{menuItemList}</div>
+          <div className="flex justify-between items-center">
+            <span>Items Total</span>
+            <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md py-1 px-1">
+              {`$ ${formatCurrency(priceForPersonWithoutTaxAndTips)}`}
+            </span>
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -118,7 +123,7 @@ const MenuItem = ({ name, price, index }) => {
 const TotalPrice = ({ totalWithTaxAndTip }) => {
   return (
     <div className="flex justify-between items-center bg-[#283147] rounded-xl p-4 text-sm sm:text-lg text-center">
-      <span className="max-w-[50%]">Total + Taxes + Tips</span>
+      <span className="max-w-[50%]">Expense Total + TP</span>
       <span className="bg-[#2F3C5E] rounded-md py-1 px-1">
         {`$ ${formatCurrency(totalWithTaxAndTip)}`}
       </span>

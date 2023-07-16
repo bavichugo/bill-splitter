@@ -22,6 +22,7 @@ const LunchDinnerPage = () => {
       <div className="flex flex-col gap-4 border border-gray-500 p-4 rounded-xl">
         {!showSummary ? <ExpenseMain expense={expense} setExpense={setExpense} setShowSummary={setShowSummary} setPreviousExpenses={setPreviousExpenses} /> : <ExpenseSummary expense={expense} setExpense={setExpense} setPreviousExpenses={setPreviousExpenses} setShowSummary={setShowSummary} />}
       </div>
+      <span>TP = Taxes and Tips</span>
       {previousExpenses && <PreviousExpenses setPreviousExpenses={setPreviousExpenses} previousExpenses={previousExpenses} />}
     </div>
   );

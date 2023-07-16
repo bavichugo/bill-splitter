@@ -16,7 +16,7 @@ const NavBar = () => {
             `${linkStyles} ${isActive ? "text-white" : "text-gray-400"}`
           }
         >
-          Lunch/Dinner
+          New Expense
         </NavLink>
         <NavLink
           to="/info"
