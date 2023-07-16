@@ -19,6 +19,9 @@ const LunchDinnerPage = () => {
 
   return (
     <div className="flex flex-col max-w-3xl w-full m-4 text-sm sm:text-lg gap-6">
+      
+        <h1 className="text-center m-0">Easily split bills for restaurants, trips, and more with friends, xBillSplit makes budgeting a breeze!</h1>
+      
       <div className="flex flex-col gap-4 border border-gray-500 p-4 rounded-xl">
         {!showSummary ? <ExpenseMain expense={expense} setExpense={setExpense} setShowSummary={setShowSummary} setPreviousExpenses={setPreviousExpenses} /> : <ExpenseSummary expense={expense} setExpense={setExpense} setPreviousExpenses={setPreviousExpenses} setShowSummary={setShowSummary} />}
       </div>
