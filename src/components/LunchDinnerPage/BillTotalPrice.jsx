@@ -19,7 +19,7 @@ const BillTotalPrice = ({ expense, setExpense }) => {
           value={expense.totalWithTaxAndTip}
           type="string"
           placeholder="0.01"
-          className="bg-[#2F3C5E] max-w-[6rem] h-full w-full px-2 py-2 rounded-l-md focus:outline-none"
+          className="flex items-center bg-[#2F3C5E] max-w-[6rem] w-full h-full rounded-l-md px-1 py-2 focus:outline-none"
           onChange={onChangeHandler}
         />
         <span className="flex items-center bg-[#2F3C5E] h-full rounded-r-md pr-2">

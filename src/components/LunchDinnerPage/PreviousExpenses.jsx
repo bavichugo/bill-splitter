@@ -82,10 +82,15 @@ const PreviousExpenseItem = ({
             {!toggleDetails ? "hide" : "show"}
           </button>
         </div>
-        <div className="flex gap-2 justify-end max-w-[12rem] w-full">
-          <span className="bg-[#2F3C5E] max-w-[6rem] w-full rounded-md px-1">
-            {`$ ${formatCurrency(totalWithTaxAndTip)}`}
-          </span>
+        <div className="flex gap-2 justify-end">
+          <div className="flex items-center h-full">
+            <span className="flex items-center bg-[#2F3C5E] max-w-[6rem] w-full h-full rounded-l-md px-1">
+              {`${formatCurrency(totalWithTaxAndTip)}`}
+            </span>
+            <span className="flex items-center bg-[#2F3C5E] h-full rounded-r-md pr-2">
+              $
+            </span>
+          </div>
           <button
             onClick={onDeleteHandler}
             className="bg-red-600 hover:bg-red-800 px-3 rounded-xl"
